@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chiffrement de Vigenère</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<!-- Barre de navigation -->
+<nav class="navbar">
+    <div class="logo">🔐 Vigenère</div>
+    <div class="nav-liens">
+        <a th:href="@{/}" th:classappend="${mode == 'etendu'} ? 'actif'">Mode étendu</a>
+        <a th:href="@{/classique}" th:classappend="${mode == 'classique'} ? 'actif'">Mode classique</a>
+    </div>
+</nav>
+
+<!-- Section hero -->
+<header class="hero">
+    <h1>Bienvenue dans le mode de chiffrement Vigenère</h1>
+    <p>Saisissez votre texte et une clé, puis accédez à votre texte chiffré !
+       N'oubliez pas : vous pouvez aussi déchiffrer.</p>
+    <span class="badge" th:if="${mode == 'etendu'}">Mode étendu : majuscules, minuscules, accents et chiffres</span>
+    <span class="badge" th:if="${mode == 'classique'}">Mode classique : alphabet A-Z uniquement</span>
+</header>
+
+<!-- Formulaire -->
+<main class="carte">
+    <form th:action="@{/traiter}" method="post" accept-charset="UTF-8">
+        <input type="hidden" name="mode" th:value="${mode}">
+
+        <label class="titre" for="texte">Texte</label>
+        <textarea id="texte" name="texte" required th:text="${texte}"></textarea>
+
+        <label class="titre" for="cle">Clé</label>
+        <input type="text" id="cle" name="cle" required th:value="${cle}">
+
+        <div class="operations">
+            <label>
+                <input type="radio" name="operation" value="chiffrer"
+                       th:checked="${operation == null or operation == 'chiffrer'}"> Chiffrer
+            </label>
+            <label>
+                <input type="radio" name="operation" value="dechiffrer"
+                       th:checked="${operation == 'dechiffrer'}"> Déchiffrer
+            </label>
+        </div>
+
+        <button type="submit">Valider</button>
+    </form>
+
+    <div class="resultat" th:if="${resultat != null}">
+        <strong>Résultat :</strong>
+        <p th:text="${resultat}"></p>
+    </div>
+
+    <div class="erreur" th:if="${erreur != null}" th:text="${erreur}"></div>
+</main>
+
+</body>
+</html>

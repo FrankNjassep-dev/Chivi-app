@@ -1,0 +1,106 @@
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #fff;
+    min-height: 100vh;
+    background:
+        linear-gradient(rgba(15, 20, 35, 0.78), rgba(15, 20, 35, 0.88)),
+        url('../images/vigenere.jpg') center / cover no-repeat fixed;
+}
+
+/* ---------- Barre de navigation ---------- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: rgba(10, 14, 25, 0.85);
+    backdrop-filter: blur(6px);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+.logo { font-size: 20px; font-weight: bold; letter-spacing: 1px; color: #f1c40f; }
+.nav-liens { display: flex; gap: 10px; }
+.nav-liens a {
+    color: #dfe6ee;
+    text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 20px;
+    transition: background .2s;
+}
+.nav-liens a:hover { background: rgba(255, 255, 255, 0.15); }
+.nav-liens a.actif { background: #f1c40f; color: #1b1f2b; font-weight: bold; }
+
+/* ---------- Section hero ---------- */
+.hero { text-align: center; padding: 70px 20px 40px; }
+.hero h1 { font-size: 38px; margin: 0 0 15px; }
+.hero p { max-width: 650px; margin: auto; font-size: 18px; line-height: 1.6; color: #dfe6ee; }
+.badge {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 6px 16px;
+    border: 1px solid #f1c40f;
+    color: #f1c40f;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+/* ---------- Carte du formulaire ---------- */
+.carte {
+    max-width: 650px;
+    margin: 20px auto 60px;
+    padding: 28px 32px;
+    background: rgba(255, 255, 255, 0.96);
+    color: #2c3e50;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+.carte label.titre { display: block; margin-top: 15px; font-weight: bold; }
+textarea, input[type=text] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border: 1px solid #ccd3db;
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: inherit;
+}
+textarea { height: 120px; resize: vertical; }
+textarea:focus, input[type=text]:focus { outline: 2px solid #f1c40f; border-color: transparent; }
+
+.operations { margin-top: 18px; }
+.operations label { margin-right: 20px; cursor: pointer; }
+
+button {
+    margin-top: 22px;
+    width: 100%;
+    padding: 12px;
+    background: #1b1f2b;
+    color: #f1c40f;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background .2s;
+}
+button:hover { background: #2c3347; }
+
+.resultat {
+    margin-top: 25px; padding: 15px;
+    background: #eafaf1; border-left: 5px solid #27ae60;
+    word-wrap: break-word;
+}
+.resultat p { margin: 8px 0 0; font-size: 17px; }
+.erreur {
+    margin-top: 25px; padding: 15px;
+    background: #fdecea; border-left: 5px solid #c0392b; color: #c0392b;
+}
+
+@media (max-width: 600px) {
+    .navbar { flex-direction: column; gap: 10px; padding: 12px; }
+    .hero h1 { font-size: 28px; }
+}
